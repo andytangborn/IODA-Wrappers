@@ -26,7 +26,7 @@ EndCycle=dt.datetime(year,month,day,hour)
 #print('StartCycle=',StartCycle)
 
 
-executable='python /scratch1/NCEPDEV/da/Andrew.Tangborn/JEDI/viirs_codesprint/build/bin/viirs_aod2ioda.py'
+executable='python /scratch1/NCEPDEV/da/Andrew.Tangborn/JEDI/jan27_aod2ioda/build/bin/viirs_aod2ioda.py'
 my_env = os.environ.copy()
 my_env['OMP_NUM_THREADS'] = '4' # for openmp to speed up fortran call
 #./viirs2ioda.x $validtime $fv3dir $infile $outfile
@@ -92,8 +92,6 @@ while NowCycle <= EndCycle:
   output_flag='-o'
   OutDir = OutRoot
   output_file = OutDir+'/VIIRS.'+validtime+'.nc'
-  time_flag = '-t'
-  time_yyyymmddhh = str(yyyymmddhh)
   method_flag = '-m'
   method = 'nesdis' 
   mask_flag = '-k'
@@ -106,7 +104,7 @@ while NowCycle <= EndCycle:
         usefiles_str += ele+' '  
     
 
-  args=' '+input_flag+' '+usefiles_str+' '+time_flag+' '+time_yyyymmddhh+' '+method_flag+' '+method+' '+mask_flag+' '+mask+' '+thin_flag+' '+thin_value+' '+output_flag+' '+output_file
+  args=' '+input_flag+' '+usefiles_str+' '+method_flag+' '+method+' '+mask_flag+' '+mask+' '+thin_flag+' '+thin_value+' '+output_flag+' '+output_file
   cmd = executable+args
   print('cmd=',cmd) 
  # with open('test.txt', 'w') as f:
